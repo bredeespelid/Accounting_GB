@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<?xml-stylesheet type="text/xsl" href="Finvoice.xsl"?>
+<Finvoice xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="3.0" xsi:noNamespaceSchemaLocation="Finvoice3.0.xsd">
+  <MessageTransmissionDetails>
+    <MessageSenderDetails>
+      <FromIdentifier SchemeID="0037">003712345678</FromIdentifier>
+      <FromIntermediator>003721291126</FromIntermediator>
+    </MessageSenderDetails>
+    <MessageReceiverDetails>
+      <ToIdentifier SchemeID="0037">003712345678</ToIdentifier>
+      <ToIntermediator>003721291126</ToIntermediator>
+    </MessageReceiverDetails>
+    <MessageDetails>
+      <MessageIdentifier>FINVINV-8650</MessageIdentifier>
+      <MessageTimeStamp>2022-01-21T14:09:21+02:00</MessageTimeStamp>
+      <ImplementationCode>XX</ImplementationCode>
+      <SpecificationIdentifier>EN16931</SpecificationIdentifier>
+    </MessageDetails>
+  </MessageTransmissionDetails>
+  <SellerPartyDetails>
+    <SellerPartyIdentifier>1234567-8</SellerPartyIdentifier>
+    <SellerOrganisationName>SellerOrganisationName1</SellerOrganisationName>
+    <SellerOrganisationName>SellerOrganisationName2</SellerOrganisationName>
+    <SellerOrganisationTradingName>SellerOrganisationTradingName</SellerOrganisationTradingName>
+    <SellerOrganisationTaxCode>FI12345678</SellerOrganisationTaxCode>
+    <SellerPostalAddressDetails>
+      <SellerStreetName>SellerStreet 123</SellerStreetName>
+      <SellerTownName>KAUPUNKI</SellerTownName>
+      <SellerPostCodeIdentifier>11111</SellerPostCodeIdentifier>
+      <SellerCountrySubdivision>SEUTU</SellerCountrySubdivision>
+      <CountryCode>FI</CountryCode>
+      <CountryName>Finland</CountryName>
+    </SellerPostalAddressDetails>
+  </SellerPartyDetails>
+  <SellerOrganisationUnitNumber>003747273735</SellerOrganisationUnitNumber>
+  <SellerContactPersonName>Matti Myyjä</SellerContactPersonName>
+  <SellerCommunicationDetails>
+    <SellerPhoneNumberIdentifier>040 333 777</SellerPhoneNumberIdentifier>
+    <SellerEmailaddressIdentifier>matti.myyja@somedomain.fi</SellerEmailaddressIdentifier>
+  </SellerCommunicationDetails>
+  <SellerInformationDetails>
+    <SellerHomeTownName>Kaupunki</SellerHomeTownName>
+    <SellerPhoneNumber>+358 20 123 456</SellerPhoneNumber>
+    <SellerCommonEmailaddressIdentifier>marinmarjat@somedomain.fi</SellerCommonEmailaddressIdentifier>
+    <SellerWebaddressIdentifier>www.somedomain.fi</SellerWebaddressIdentifier>
+    <SellerAccountDetails>
+      <SellerAccountID IdentificationSchemeName="IBAN">FI4819503000000010</SellerAccountID>
+      <SellerBic IdentificationSchemeName="BIC">NDEAFIHH</SellerBic>
+      <SellerAccountName>Nordea</SellerAccountName>
+    </SellerAccountDetails>
+  </SellerInformationDetails>
+  <InvoiceRecipientCommunicationDetails>
+    <InvoiceRecipientEmailaddressIdentifier>laskut@somedomain.fi</InvoiceRecipientEmailaddressIdentifier>
+  </InvoiceRecipientCommunicationDetails>
+  <BuyerPartyDetails>
+    <BuyerPartyIdentifier>1234567-8</BuyerPartyIdentifier>
+    <BuyerOrganisationName>BuyerOrganisationName1</BuyerOrganisationName>
+    <BuyerOrganisationName>BuyerOrganisationName2</BuyerOrganisationName>
+    <BuyerOrganisationTradingName>BuyerOrganisationTradingName</BuyerOrganisationTradingName>
+    <BuyerOrganisationTaxCode>FI12345678</BuyerOrganisationTaxCode>
+    <BuyerPostalAddressDetails>
+      <BuyerStreetName>BuyerStree 10 A 33</BuyerStreetName>
+      <BuyerTownName>Peruskylä</BuyerTownName>
+      <BuyerPostCodeIdentifier>11111</BuyerPostCodeIdentifier>
+      <CountryCode>FI</CountryCode>
+      <CountryName>Finland</CountryName>
+    </BuyerPostalAddressDetails>
+  </BuyerPartyDetails>
+  <BuyerCommunicationDetails>
+    <BuyerEmailaddressIdentifier>peruslasku@somedomain.fi</BuyerEmailaddressIdentifier>
+  </BuyerCommunicationDetails>
+  <InvoiceDetails>
+    <InvoiceTypeCode CodeListAgencyIdentifier="SPY">INV01</InvoiceTypeCode>
+    <InvoiceTypeCodeUN>380</InvoiceTypeCodeUN>
+    <InvoiceTypeText>LASKU</InvoiceTypeText>
+    <OriginCode>Original</OriginCode>
+    <InvoiceNumber>9190100001</InvoiceNumber>
+    <InvoiceDate Format="CCYYMMDD">20220121</InvoiceDate>
+    <OrderIdentifier>Sopparin lisätieto laskulle</OrderIdentifier>
+    <RowsTotalVatExcludedAmount AmountCurrencyIdentifier="EUR">900,00</RowsTotalVatExcludedAmount>
+    <InvoiceTotalVatExcludedAmount AmountCurrencyIdentifier="EUR">900,00</InvoiceTotalVatExcludedAmount>
+    <InvoiceTotalVatAmount AmountCurrencyIdentifier="EUR">216,00</InvoiceTotalVatAmount>
+    <InvoiceTotalVatIncludedAmount AmountCurrencyIdentifier="EUR">1116,00</InvoiceTotalVatIncludedAmount>
+    <InvoicePaidAmount AmountCurrencyIdentifier="EUR">10,00</InvoicePaidAmount>
+    <VatSpecificationDetails>
+      <VatBaseAmount AmountCurrencyIdentifier="EUR">900,00</VatBaseAmount>
+      <VatRatePercent>24</VatRatePercent>
+      <VatCode>S</VatCode>
+      <VatRateAmount AmountCurrencyIdentifier="EUR">216,00</VatRateAmount>
+    </VatSpecificationDetails>
+    <InvoiceFreeText>Viitteemme: Sopimustyyppi X</InvoiceFreeText>
+    <InvoiceFreeText>Tilauksenne: Sopparin lisätieto laskulle</InvoiceFreeText>
+    <InvoiceFreeText>Puh: +358 20 123 456 Fax:  Y-tunnus: 1234567-8 Kotipaikka: Kaupunki Sähkäposti: marinmarjat@somedomain.fi Kotisivut: www.somedomain.fi</InvoiceFreeText>
+    <PaymentTermsDetails>
+      <PaymentTermsFreeText>7 pv netto</PaymentTermsFreeText>
+      <FreeText>
+        <Value>8 pv</Value>
+      </FreeText>
+      <InvoiceDueDate Format="CCYYMMDD">20220128</InvoiceDueDate>
+    </PaymentTermsDetails>
+    <DiscountDetails>
+      <FreeText>Discount</FreeText>
+      <ReasonCode>65</ReasonCode>
+      <Amount AmountCurrencyIdentifier="EUR">100,00</Amount>
+      <VatCategoryCode>S</VatCategoryCode>
+      <VatRatePercent>24,0</VatRatePercent>
+    </DiscountDetails>
+    <ChargeDetails>
+      <ReasonText>Charge</ReasonText>
+      <ReasonCode>FC</ReasonCode>
+      <Percent>50,00</Percent>
+      <Amount AmountCurrencyIdentifier="EUR">100,00</Amount>
+      <BaseAmount AmountCurrencyIdentifier="EUR">200,00</BaseAmount>
+      <VatCategoryCode>S</VatCategoryCode>
+      <VatRatePercent>24,0</VatRatePercent>
+    </ChargeDetails>
+    <TenderReference>TenderReference</TenderReference>
+  </InvoiceDetails>
+  <VirtualBankBarcode>448195030000000100011160000000000000091901000011190128</VirtualBankBarcode>
+  <InvoiceRow>
+    <ArticleName>TextRowImitation</ArticleName>
+    <InvoicedQuantity QuantityUnitCode="ZZ" QuantityUnitCodeUN="ZZ">0</InvoicedQuantity>
+    <UnitPriceNetAmount AmountCurrencyIdentifier="EUR">0,00</UnitPriceNetAmount>
+    <RowPositionIdentifier>1</RowPositionIdentifier>
+    <RowFreeText>Laskutusjakso 01.01.2022 - 31.01.2022 Sopimusjakso 1 kk.</RowFreeText>
+    <RowVatRatePercent>24</RowVatRatePercent>
+    <RowVatCode>S</RowVatCode>
+    <RowVatExcludedAmount AmountCurrencyIdentifier="EUR">0,00</RowVatExcludedAmount>
+  </InvoiceRow>
+  <InvoiceRow>
+    <InvoicedObjectID SchemeID="ZZZ">12345</InvoicedObjectID>
+    <ArticleIdentifier>SOP1</ArticleIdentifier>
+    <ArticleGroupIdentifier SchemeID="STI">9873242</ArticleGroupIdentifier>
+    <ArticleGroupIdentifier SchemeID="AA">2423789</ArticleGroupIdentifier>
+    <ArticleName>ArticleName</ArticleName>
+    <ArticleDescription>ArticleDescription</ArticleDescription>
+    <EanCode SchemeID="0160">783250550197</EanCode>
+    <DeliveredQuantity QuantityUnitCode="KG" QuantityUnitCodeUN="XKG">1</DeliveredQuantity>
+    <InvoicedQuantity QuantityUnitCode="KG" QuantityUnitCodeUN="XKG">1</InvoicedQuantity>
+    <StartDate Format="CCYYMMDD">20220101</StartDate>
+    <EndDate Format="CCYYMMDD">20220131</EndDate>
+    <UnitPriceAmount AmountCurrencyIdentifier="EUR" QuantityUnitCodeUN="XKG">1000,00</UnitPriceAmount>
+    <UnitPriceNetAmount AmountCurrencyIdentifier="EUR" QuantityUnitCodeUN="XKG">1000,00</UnitPriceNetAmount>
+    <RowPositionIdentifier>2</RowPositionIdentifier>
+    <RowFreeText>RowFreeText</RowFreeText>
+    <RowDiscountPercent>10,000</RowDiscountPercent>
+    <RowDiscountAmount AmountCurrencyIdentifier="EUR">100,00</RowDiscountAmount>
+    <RowDiscountTypeCode>95</RowDiscountTypeCode>
+    <RowDiscountTypeText>Discount</RowDiscountTypeText>
+    <RowVatRatePercent>24</RowVatRatePercent>
+    <RowVatCode>S</RowVatCode>
+    <RowVatAmount AmountCurrencyIdentifier="EUR">216,00</RowVatAmount>
+    <RowVatExcludedAmount AmountCurrencyIdentifier="EUR">900,00</RowVatExcludedAmount>
+    <RowAmount AmountCurrencyIdentifier="EUR">1116,00</RowAmount>
+  </InvoiceRow>
+  <InvoiceRow>
+    <ArticleName>ArticleName</ArticleName>
+    <ArticleDescription>ArticleDescription</ArticleDescription>
+    <InvoicedQuantity QuantityUnitCode="KG" QuantityUnitCodeUN="XKG">1</InvoicedQuantity>
+    <UnitPriceAmount AmountCurrencyIdentifier="EUR" QuantityUnitCodeUN="XKG">1000,00</UnitPriceAmount>
+    <UnitPriceNetAmount AmountCurrencyIdentifier="EUR" QuantityUnitCodeUN="XKG">1000,00</UnitPriceNetAmount>
+    <RowPositionIdentifier>3</RowPositionIdentifier>
+    <RowProgressiveDiscountDetails>
+      <RowDiscountPercent>50,000</RowDiscountPercent>
+      <RowDiscountAmount AmountCurrencyIdentifier="EUR">500,00</RowDiscountAmount>
+      <RowDiscountTypeText>Discount1</RowDiscountTypeText>
+    </RowProgressiveDiscountDetails>
+    <RowProgressiveDiscountDetails>
+      <RowDiscountPercent>100,000</RowDiscountPercent>
+      <RowDiscountAmount AmountCurrencyIdentifier="EUR">500,00</RowDiscountAmount>
+      <RowDiscountTypeText>Discount2</RowDiscountTypeText>
+    </RowProgressiveDiscountDetails>
+    <RowVatRatePercent>24</RowVatRatePercent>
+    <RowVatCode>S</RowVatCode>
+    <RowVatAmount AmountCurrencyIdentifier="EUR">0,00</RowVatAmount>
+    <RowVatExcludedAmount AmountCurrencyIdentifier="EUR">00,00</RowVatExcludedAmount>
+    <RowAmount AmountCurrencyIdentifier="EUR">0,00</RowAmount>
+  </InvoiceRow>
+  <EpiDetails>
+    <EpiIdentificationDetails>
+      <EpiDate Format="CCYYMMDD">20220121</EpiDate>
+      <EpiReference/>
+    </EpiIdentificationDetails>
+    <EpiPartyDetails>
+      <EpiBfiPartyDetails>
+        <EpiBfiIdentifier IdentificationSchemeName="BIC">NDEAFIHH</EpiBfiIdentifier>
+      </EpiBfiPartyDetails>
+      <EpiBeneficiaryPartyDetails>
+        <EpiNameAddressDetails>Some Domain Oy MM comp.</EpiNameAddressDetails>
+        <EpiBei>1234567-8</EpiBei>
+        <EpiAccountID IdentificationSchemeName="IBAN">FI4819503000000010</EpiAccountID>
+      </EpiBeneficiaryPartyDetails>
+    </EpiPartyDetails>
+    <EpiPaymentInstructionDetails>
+      <EpiRemittanceInfoIdentifier IdentificationSchemeName="SPY">91901000011</EpiRemittanceInfoIdentifier>
+      <EpiInstructedAmount AmountCurrencyIdentifier="EUR">1106,00</EpiInstructedAmount>
+      <EpiCharge ChargeOption="SHA">SHA</EpiCharge>
+      <EpiDateOptionDate Format="CCYYMMDD">20220128</EpiDateOptionDate>
+      <EpiPaymentMeansCode>58</EpiPaymentMeansCode>
+    </EpiPaymentInstructionDetails>
+  </EpiDetails>
+</Finvoice>
