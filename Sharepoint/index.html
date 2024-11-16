@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Update</title>
+    <script>
+        function fetchData(sheetName) {
+            fetch(`/data/${sheetName}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Oppdater nettsiden med den nye dataen
+                    console.log(data);
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+
+        function updateData() {
+            fetch('/update', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "success") {
+                        alert("Data updated successfully!");
+                        fetchData('Sheet1');  // Oppdater visningen etter dataoppdatering
+                    } else {
+                        alert("Error updating data: " + data.message);
+                    }
+                })
+                .catch(error => console.error('Error updating data:', error));
+        }
+    </script>
+</head>
+<body>
+    <button onclick="updateData()">Update Data</button>
+    <!-- Resten av nettsiden -->
+    <script>
+        // Hent data initialt og deretter hver time
+        const sheetName = 'Sheet1'; // Bytt til ditt regnearknavn
+        setInterval(() => fetchData(sheetName), 3600000);  // 3600000 ms = 1 time
+        fetchData(sheetName);
+    </script>
+</body>
+</html>
