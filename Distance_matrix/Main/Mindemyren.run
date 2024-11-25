@@ -36,11 +36,9 @@ for {d in DAYS} {
     } until current = 'Mindemyren';
 
     printf "End at Mindemyren\n";
-    printf "Total Travel Time for %s: %.2f minutes (%.2f hours)\n", d, 
-           sum{i in BAKERIES, j in BAKERIES: i != j} DISTANCE[i,j] * TRAVEL_TIME_PER_KM * x[d,i,j] + 
-           card(BAKERIES) * UNLOADING_TIME, 
-           (sum{i in BAKERIES, j in BAKERIES: i != j} DISTANCE[i,j] * TRAVEL_TIME_PER_KM * x[d,i,j] + 
-           card(BAKERIES) * UNLOADING_TIME) / 60;
+    printf "Total Distance for %s: %.2f km\n", d, 
+           sum{i in BAKERIES, j in BAKERIES: i != j} DISTANCE[i,j] * x[d,i,j];
 }
 
-printf "\nOverall Total Travel Time: %.2f minutes (%.2f hours)\n", TotalTime, TotalTime/60;
+printf "\nOverall Total Distance: %.2f km\n", 
+       sum{d in DAYS, i in BAKERIES, j in BAKERIES: i != j} DISTANCE[i,j] * x[d,i,j];
