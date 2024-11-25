@@ -1,0 +1,15 @@
+# Sett av noder
+set NODES := Korskirken Christie Damsgård Marken Fløyen Minemyren Festplassen KronstadX Horisont VestreTorggaten;
+
+# Åpningstider (i minutter fra midnatt)
+param OPEN_TIME :=
+Korskirken      450  # 07:30
+Christie        450  # 07:30
+Damsgård        420  # 07:00
+Marken          390  # 06:30
+Fløyen          420  # 07:00
+Minemyren       360  # 06:00
+Festplassen     420  # 07:00
+KronstadX       360  # 06:00
+Horisont        540  # 09:00
+VestreTorggaten 420  # 07:00;
