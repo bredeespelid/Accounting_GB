@@ -4,8 +4,6 @@ set DAYS ordered;
 
 # Parameters
 param DISTANCE{BAKERIES, BAKERIES};
-param TRAVEL_TIME_PER_KM;
-param UNLOADING_TIME;
 param PRIORITY{DAYS, BAKERIES};
 param current symbolic;
 
@@ -13,10 +11,10 @@ param current symbolic;
 var x{DAYS, BAKERIES, BAKERIES} binary;
 var u{DAYS, BAKERIES} >= 0;
 
-# Objective: Minimize total travel time and prioritize early openings for each day
-minimize TotalTime:
+# Objective: Minimize total distance and prioritize early openings for each day
+minimize TotalDistance:
     sum{d in DAYS, i in BAKERIES, j in BAKERIES: i != j} 
-        (DISTANCE[i,j] * TRAVEL_TIME_PER_KM + UNLOADING_TIME) * x[d,i,j] +
+        DISTANCE[i,j] * x[d,i,j] +
     sum{d in DAYS, i in BAKERIES, j in BAKERIES: i != j and i != 'Mindemyren' and j != 'Mindemyren'} 
         PRIORITY[d,i] * x[d,i,j];
 
@@ -39,12 +37,10 @@ subject to EndAtMindemyren {d in DAYS}:
 subject to MindemyrenFirst {d in DAYS}:
     u[d,'Mindemyren'] = 0;
 
-# Add this constraint to your existing constraints in Mindemyren.mod
+# Linear version of VisitPriorityOneFirst
 subject to VisitPriorityOneFirst {d in DAYS}:
-    sum{j in BAKERIES: j != 'Mindemyren' and PRIORITY[d,j] = 1} 
-        sum{i in BAKERIES: i != j} x[d,i,j] * (if i = 'Mindemyren' then 1 else 0) = 1;
-        
-# New constraint to maintain priority order
+    sum{j in BAKERIES: j != 'Mindemyren' and PRIORITY[d,j] = 1} x[d,'Mindemyren',j] = 1;
+
+# Maintain priority order
 subject to MaintainPriorityOrder {d in DAYS, i in BAKERIES, j in BAKERIES: i != j and i != 'Mindemyren' and j != 'Mindemyren'}:
     PRIORITY[d,i] <= PRIORITY[d,j] + card(BAKERIES) * (1 - x[d,i,j]);
- 
