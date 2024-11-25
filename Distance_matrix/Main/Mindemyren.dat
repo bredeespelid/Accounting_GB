@@ -95,5 +95,3 @@ param PRIORITY :=
 [Sunday, Lagunen] 4
 [Sunday, Horisont] 5;
 
-param TRAVEL_TIME_PER_KM := 3;
-param UNLOADING_TIME := 10;
