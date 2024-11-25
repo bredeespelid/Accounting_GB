@@ -1,15 +1,53 @@
-# Sett av noder
-set NODES := Korskirken Christie Damsgård Marken Fløyen Minemyren Festplassen KronstadX Horisont VestreTorggaten;
+param PRIORITIZED_BAKERIES :=
+[Monday] :
+1 KronstadX
+2 Marken Fløttmannsplassen
+3 Damsgård Fløyen Festplassen VestreTorggaten
+4 Korskirken Christie
+5 Lagunen
+6 Horisont
 
-# Åpningstider (i minutter fra midnatt)
-param OPEN_TIME :=
-Korskirken      450  # 07:30
-Christie        450  # 07:30
-Damsgård        420  # 07:00
-Marken          390  # 06:30
-Fløyen          420  # 07:00
-Minemyren       360  # 06:00
-Festplassen     420  # 07:00
-KronstadX       360  # 06:00
-Horisont        540  # 09:00
-VestreTorggaten 420  # 07:00;
+[Tuesday] :
+1 KronstadX
+2 Marken Fløttmannsplassen
+3 Damsgård Fløyen Festplassen VestreTorggaten
+4 Korskirken Christie
+5 Lagunen
+6 Horisont
+
+[Wednesday] :
+1 KronstadX
+2 Marken Fløttmannsplassen
+3 Damsgård Fløyen Festplassen VestreTorggaten
+4 Korskirken Christie
+5 Lagunen
+6 Horisont
+
+[Thursday] :
+1 KronstadX
+2 Marken Fløttmannsplassen
+3 Damsgård Fløyen Festplassen VestreTorggaten
+4 Korskirken Christie
+5 Lagunen
+6 Horisont
+
+[Friday] :
+1 KronstadX
+2 Marken Fløttmannsplassen
+3 Damsgård Fløyen Festplassen VestreTorggaten
+4 Korskirken Christie
+5 Lagunen
+6 Horisont
+
+[Saturday] :
+1 Damsgård Fløyen
+2 Marken Fløttmannsplassen KronstadX VestreTorggaten Festplassen Lagunen
+3 Korskirken
+4 Christie Horisont
+
+[Sunday] :
+1 Fløyen
+2 Damsgård Marken Fløttmannsplassen KronstadX VestreTorggaten Festplassen
+3 Korskirken Christie
+4 Lagunen
+5 Horisont;
