@@ -58,6 +58,8 @@ try:
         'Muséplassen 3',              # Godt Brød Christie
         'Damsgårdsveien 59',          # Godt Brød Fløttmannsplassen
         'Myrdalsvegen 2'              # Godt Brød Horisont
+        'Damsgårdsveien 59 5058'     #Godt Brød Damsgård
+        'Lagunen Storsenter 5239'    #Lagunen
     ]))
     
     # Initialize the distance matrix
