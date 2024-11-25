@@ -1,0 +1,18 @@
+set BAKERIES := Korskirken Christie Damsgård Marken Fløyen Mindemyren Festplassen KronstadX Horisont VestreTorggaten;
+
+param DISTANCE: 
+                Korskirken Christie Damsgård Marken Fløyen Mindemyren Festplassen KronstadX Horisont VestreTorggaten :=
+Korskirken      0          1.94      3.45      0.48  0.29  4.6       1.46       3.53      12.11    1.66
+Christie        1.94       0         3.14      1.54  1.85  4.29      1.15       3.22      11.81    1.35
+Damsgård        3.45       3.14      0         3.6   4.43  3.28      3.4        1.93      10.79    2.59
+Marken          0.48       1.54      3.6       0     0.54  4.2       1.06       3.13      11.72    1.26
+Fløyen          0.29       1.85      4.43      0.54  0     4.68      1.54       3.61      12.2     1.74
+Mindemyren      4.6        4.29      3.28      4.2   4.68  0         3.39       1.04      10.13    3.59
+Festplassen     1.46       1.15      3.4       1.06  1.54  3.39      0          3.59      12.18    0.74
+KronstadX       3.53       3.22      1.93      3.13  3.61  1.04      3.59       0         9.8      3.15
+Horisont        12.11      11.81     10.79     11.72 12.2  10.13     12.18      9.8       0        11.94
+VestreTorggaten 1.66       1.35      2.59      1.26  1.74  3.59      0.74       3.15      11.94    0;
+
+
+param TRAVEL_TIME_PER_KM := 3;
+param UNLOADING_TIME := 10;

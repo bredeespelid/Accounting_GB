@@ -1,0 +1,22 @@
+reset;
+# Load the model
+model Mindemyren.mod;
+
+# Load the data
+data Mindemyren.dat;
+
+# Set the solver to Gurobi
+option solver gurobi;
+
+# Solve the problem
+solve;
+
+# Display results
+printf "Optimal Route:\n";
+printf "Start at Mindemyren\n";
+for {i in BAKERIES, j in BAKERIES: i != j && x[i,j] > 0.5} {
+    printf "From %s to %s\n", i, j;
+}
+printf "End at Mindemyren\n\n";
+
+printf "Total Travel Time: %.2f minutes (%.2f hours)\n", TotalTime, TotalTime/60;
