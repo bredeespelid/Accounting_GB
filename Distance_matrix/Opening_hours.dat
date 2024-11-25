@@ -1,4 +1,6 @@
-param PRIORITIZED_BAKERIES :=
+set DAYS := Monday Tuesday Wednesday Thursday Friday Saturday Sunday;
+
+param PRIORITY :=
 [Monday] :
 1 KronstadX
 2 Marken Fløttmannsplassen
