@@ -46,6 +46,3 @@ subject to VisitPriorityOneFirst {d in DAYS}:
 subject to MaintainPriorityOrder {d in DAYS, i in BAKERIES, j in BAKERIES: i != j and i != 'Mindemyren' and j != 'Mindemyren'}:
     PRIORITY[d,i] <= PRIORITY[d,j] + card(BAKERIES) * (1 - x[d,i,j]);
 
-# New constraint: Horisont must be the last stop before Mindemyren
-subject to HorisontLastBeforeMindemyren {d in DAYS}:
-    x[d,'Horisont','Mindemyren'] = 1;

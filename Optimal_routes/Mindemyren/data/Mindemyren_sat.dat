@@ -1,5 +1,6 @@
 set BAKERIES := Korskirken Christie Marken Fløyen Mindemyren Festplassen KronstadX Horisont VestreTorggaten Fløttmannsplassen Lagunen;
-set DAYS := Monday Tuesday Wednesday Thursday Friday Saturday Sunday;
+set DAYS := Saturday;
+set VANS := Van1 Van2;
 
 param DISTANCE: 
                 Horisont Festplassen Christie Fløttmannsplassen Marken Mindemyren Lagunen KronstadX VestreTorggaten Korskirken Fløyen :=
@@ -17,61 +18,6 @@ Fløyen          13.27   1.54       2.02     3.53            0.56   4.68      12
 
 param PRIORITY :=
 
-[Monday, KronstadX]          1
-[Monday, Marken]             2
-[Monday, Fløttmannsplassen]  3
-[Monday, Fløyen]             3
-[Monday, Festplassen]        3
-[Monday, VestreTorggaten]    3
-[Monday, Korskirken]         4
-[Monday, Christie]           4
-[Monday, Lagunen]            5
-[Monday, Horisont]           6
-
-[Tuesday, KronstadX]         1
-[Tuesday, Marken]            2
-[Tuesday, Fløttmannsplassen] 3
-[Tuesday, Fløyen]            3
-[Tuesday, Festplassen]       3
-[Tuesday, VestreTorggaten]   3
-[Tuesday, Korskirken]        4
-[Tuesday, Christie]          4
-[Tuesday, Lagunen]           5
-[Tuesday, Horisont]          6
-
-[Wednesday, KronstadX]       1
-[Wednesday, Marken]          2
-[Wednesday, Fløttmannsplassen] 3
-[Wednesday, Fløyen]          3
-[Wednesday, Festplassen]     3
-[Wednesday, VestreTorggaten] 3
-[Wednesday, Korskirken]      4
-[Wednesday, Christie]        4
-[Wednesday, Lagunen]         5
-[Wednesday, Horisont]        6
-
-[Thursday, KronstadX]        1
-[Thursday, Marken]           2
-[Thursday, Fløttmannsplassen] 3
-[Thursday, Fløyen]           3
-[Thursday, Festplassen]      3
-[Thursday, VestreTorggaten]  3
-[Thursday, Korskirken]       4
-[Thursday, Christie]         4
-[Thursday, Lagunen]          5
-[Thursday, Horisont]         6
-
-[Friday, KronstadX]          1
-[Friday, Marken]             2
-[Friday, Fløttmannsplassen]  3
-[Friday, Fløyen]             3
-[Friday, Festplassen]        3
-[Friday, VestreTorggaten]    3
-[Friday, Korskirken]         4
-[Friday, Christie]           4
-[Friday, Lagunen]            5
-[Friday, Horisont]           6
-
 [Saturday, Fløttmannsplassen] 1
 [Saturday, Fløyen]            1
 [Saturday, KronstadX]         2
@@ -82,15 +28,5 @@ param PRIORITY :=
 [Saturday, Lagunen]           2
 [Saturday, Christie]          3
 [Saturday, Horisont]          3
-
-[Sunday, Fløyen]               1
-[Sunday, KronstadX]            2
-[Sunday, Fløttmannsplassen]    2
-[Sunday, Marken]               2
-[Sunday, VestreTorggaten]      2
-[Sunday, Festplassen]          2
-[Sunday, Korskirken]           3
-[Sunday, Christie]             3
-[Sunday, Lagunen]              4
-[Sunday, Horisont]             5;
+;
 
