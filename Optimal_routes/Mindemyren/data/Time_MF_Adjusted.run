@@ -1,7 +1,8 @@
 reset;
-model MF_Time.mod;
-data MF_Time.dat;
+model Time_MF_Adjusted.mod;
+data Time_MF_Adjusted.dat;
 
+# Solve and display results
 option solver cplex;
 solve;
 
