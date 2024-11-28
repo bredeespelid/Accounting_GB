@@ -65,10 +65,11 @@ def parse_json_response(response_text):
 def process_batch(batch):
     batch_json = json.dumps(batch, ensure_ascii=False)
     system_message = (
-        "You are an assistant trained to analyze customer feedback. "
+        "You are an assistant trained to analyze customer feedback."
         "Classify each review into categories, including 'Positiv tilbakemelding', 'Dyre produkter', "
         "'Dårlige produkter', 'Dårlig kundeservice/opplevelse', 'Lang kø/ventetid', 'Dårlig renhold', and 'Ingen kommentar'. "
-        "Assign binary values (0 or 1) for each category for each review. Exclude the original comment but include the review's index."
+        "At least one of the categories should be 1. But only assign Annet Dårlig if all categories are 0. "
+        "Assign binary values (0 or 1) for each category for each review. Exclude the original comment"
     )
     user_message = f"""
 Analyser følgende data i JSON-format:
@@ -89,7 +90,7 @@ Utdata må inkludere nøyaktig følgende JSON-struktur uten ekstra tekst, forkla
             "Lang kø/ventetid": <0_or_1>,
             "Dårlig renhold": <0_or_1>,
             "Ingen kommentar": <0_or_1>,
-            "Annet": <0>
+            "Annet Dårlig": <0>
         }}
     }}
 ]
@@ -184,9 +185,9 @@ def main():
         current_batch = json_data[start_index:end_index]
         print(f"Behandler batch {batch_num + 1} av {total_batches} (element {start_index} til {end_index - 1})")
         logger.info(f"Behandler batch {batch_num + 1} av {total_batches} (element {start_index} til {end_index - 1})")
-        
+
         result = process_batch(current_batch)
-        
+
         if result:
             # Anta at result er en liste av objekter
             all_results.extend(result)
