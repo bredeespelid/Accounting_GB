@@ -9,9 +9,6 @@ data Mindemyren_sat.dat;
 # Set the solver to Gurobi
 option solver gurobi;
 
-# Set a time limit of 300 seconds (5 minutes)
-option gurobi_options 'timelim=300';
-
 # Solve the problem
 solve;
 
@@ -20,52 +17,30 @@ printf "Optimal Routes:\n";
 
 for {d in DAYS} {
     printf "\nDay: %s\n", d;
-    
-    for {v in VANS} {
-        printf "\nVan: %s\n", v;
-        printf "Route: Mindemyren";
-        for {i in BAKERIES: i != 'Mindemyren'} {
-            if sum{j in BAKERIES: j != i} x[v,d,i,j] > 0.5 then {
-                printf " -> %s (Priority: %d)", i, PRIORITY[d,i];
-            }
-        }
-        printf " -> Mindemyren\n";
+    for {k in TRUCKS} {
+        printf "Truck: %s\n", k;
+        printf "Start at Mindemyren\n";
 
-        printf "Total Distance for %s, %s: %.2f km\n", v, d, 
-               sum{i in BAKERIES, j in BAKERIES: i != j} DISTANCE[i,j] * x[v,d,i,j];
+        let current := 'Mindemyren';
+
+        repeat {
+            # Find the next location based on x[d,k,current,j]
+            for {j in BAKERIES: j != current} {
+                if x[d,k,current,j] > 0.5 then {
+                    if j != 'Mindemyren' then
+                        printf "From %s to %s (Priority: %d)\n", 
+                               current, j, PRIORITY[d,j];
+                    else
+                        printf "From %s to %s\n", current, j;
+                    let current := j;
+                    break;
+                }
+            }
+        } until current = 'Mindemyren';
+
+        printf "End at Mindemyren\n";
     }
 }
 
 printf "\nOverall Total Distance: %.2f km\n", 
-       sum{v in VANS, d in DAYS, i in BAKERIES, j in BAKERIES: i != j} DISTANCE[i,j] * x[v,d,i,j];
-
-printf "\nWorkload Balance:\n";
-for {d in DAYS} {
-    printf "Day %s:\n", d;
-    for {v in VANS} {
-        printf "  %s: %.2f km\n", v, 
-               sum{i in BAKERIES, j in BAKERIES: i != j} DISTANCE[i,j] * x[v,d,i,j];
-    }
-}
-
-printf "\nBakery Assignments:\n";
-for {d in DAYS} {
-    for {i in BAKERIES: i != 'Mindemyren'} {
-        printf "Day %s, %s: ", d, i;
-        for {v in VANS} {
-            if sum{j in BAKERIES: j != i} x[v,d,i,j] > 0.5 then printf "%s", v;
-        }
-        printf "\n";
-    }
-}
-
-printf "\nLast Stop Before Mindemyren:\n";
-for {d in DAYS} {
-    for {v in VANS} {
-        printf "Day %s, %s: ", d, v;
-        for {i in BAKERIES: i != 'Mindemyren'} {
-            if x[v,d,i,'Mindemyren'] > 0.5 then printf "%s", i;
-        }
-        printf "\n";
-    }
-}
+       sum{d in DAYS, k in TRUCKS, i in BAKERIES, j in BAKERIES: i != j} DISTANCE[i,j] * x[d,k,i,j];

@@ -1,65 +1,55 @@
 # Sets
-set BAKERIES;
-set DAYS ordered;
-set VANS;
+set BAKERIES;          # Mengde av alle bakerier inkludert depotet ('Mindemyren')
+set DAYS ordered;      # Mengde av dager
+set TRUCKS;            # Ny mengde for lastebiler (f.eks., TRUCKS := {'Truck1', 'Truck2'})
 
 # Parameters
-param DISTANCE{BAKERIES, BAKERIES};
-param PRIORITY{DAYS, BAKERIES};
+param DISTANCE{BAKERIES, BAKERIES};  # Avstand mellom bakerier
+param PRIORITY{DAYS, BAKERIES};     # Prioritet for å besøke bakerier
+param current symbolic;
 
 # Variables
-var x{VANS, DAYS, BAKERIES, BAKERIES} binary;
-var u{VANS, DAYS, BAKERIES} >= 0;
-var y{VANS, DAYS, BAKERIES} binary;  # 1 if van v visits bakery i on day d
-var max_distance{DAYS};
+var x{DAYS, TRUCKS, BAKERIES, BAKERIES} binary;  # Besøker lastebil k fra i til j på dag d
+var u{DAYS, TRUCKS, BAKERIES} >= 0;             # Sekvensvariabel for subtur-eliminering
 
-# Objective: Minimize total distance, prioritize early openings, and balance workload
+# Objective: Minimize total distance and prioritize early openings
 minimize TotalDistance:
-    sum{v in VANS, d in DAYS, i in BAKERIES, j in BAKERIES: i != j} 
-        DISTANCE[i,j] * x[v,d,i,j] +
-    50 * sum{v in VANS, d in DAYS, i in BAKERIES: i != 'Mindemyren'} 
-        PRIORITY[d,i] * y[v,d,i];
+    sum{d in DAYS, k in TRUCKS, i in BAKERIES, j in BAKERIES: i != j} 
+        DISTANCE[i,j] * x[d,k,i,j] +
+    sum{d in DAYS, k in TRUCKS, i in BAKERIES, j in BAKERIES: i != j and i != 'Mindemyren' and j != 'Mindemyren'} 
+        PRIORITY[d,i] * x[d,k,i,j];
 
- 
 # Constraints
+
+# 1. Hvert bakeri besøkes nøyaktig én gang per dag av én lastebil
 subject to VisitOncePerDay {d in DAYS, i in BAKERIES: i != 'Mindemyren'}:
-    sum{v in VANS} y[v,d,i] = 1;
+    sum{k in TRUCKS, j in BAKERIES: j != i} x[d,k,i,j] = 1;
 
-subject to LinkXY {v in VANS, d in DAYS, i in BAKERIES, j in BAKERIES: i != j}:
-    x[v,d,i,j] <= y[v,d,i];
+# 2. Hver lastebil forlater hvert bakeri én gang
+subject to DepartOncePerDay {d in DAYS, k in TRUCKS, j in BAKERIES: j != 'Mindemyren'}:
+    sum{i in BAKERIES: i != j} x[d,k,i,j] = sum{i in BAKERIES: i != j} x[d,k,j,i];
 
-subject to DepartOncePerVan {v in VANS, d in DAYS, i in BAKERIES: i != 'Mindemyren'}:
-    sum{j in BAKERIES: j != i} x[v,d,i,j] = y[v,d,i];
+# 3. Subtur-eliminering for hver lastebil
+subject to SubtourElimination {d in DAYS, k in TRUCKS, i in BAKERIES, j in BAKERIES: i != j and i != 'Mindemyren' and j != 'Mindemyren'}:
+    u[d,k,i] - u[d,k,j] + card(BAKERIES) * x[d,k,i,j] <= card(BAKERIES) - 1;
 
-subject to ArriveOncePerVan {v in VANS, d in DAYS, j in BAKERIES: j != 'Mindemyren'}:
-    sum{i in BAKERIES: i != j} x[v,d,i,j] = y[v,d,j];
+# 4. Hver lastebil starter fra depotet
+subject to StartAtMindemyren {d in DAYS, k in TRUCKS}:
+    sum{j in BAKERIES: j != 'Mindemyren'} x[d,k,'Mindemyren',j] = 1;
 
-subject to SubtourElimination {v in VANS, d in DAYS, i in BAKERIES, j in BAKERIES: i != j and i != 'Mindemyren' and j != 'Mindemyren'}:
-    u[v,d,i] - u[v,d,j] + card(BAKERIES) * x[v,d,i,j] <= card(BAKERIES) - 1;
+# 5. Hver lastebil returnerer til depotet
+subject to EndAtMindemyren {d in DAYS, k in TRUCKS}:
+    sum{i in BAKERIES: i != 'Mindemyren'} x[d,k,i,'Mindemyren'] = 1;
 
-subject to StartAtMindemyren {v in VANS, d in DAYS}:
-    sum{j in BAKERIES: j != 'Mindemyren'} x[v,d,'Mindemyren',j] = 1;
+# 6. Depotet er alltid første stopp for hver lastebil
+subject to MindemyrenFirst {d in DAYS, k in TRUCKS}:
+    u[d,k,'Mindemyren'] = 0;
 
-subject to EndAtMindemyren {v in VANS, d in DAYS}:
-    sum{i in BAKERIES: i != 'Mindemyren'} x[v,d,i,'Mindemyren'] = 1;
+# 7. Prioritér bakerier med høyere prioritet
+subject to MaintainPriorityOrder {d in DAYS, k in TRUCKS, i in BAKERIES, j in BAKERIES: i != j and i != 'Mindemyren' and j != 'Mindemyren'}:
+    PRIORITY[d,i] <= PRIORITY[d,j] + card(BAKERIES) * (1 - x[d,k,i,j]);
 
-subject to MindemyrenFirst {v in VANS, d in DAYS}:
-    u[v,d,'Mindemyren'] = 0;
-    
+# 8. "Horisont" må være siste stopp før depotet for en av lastebilene
+subject to HorisontLastBeforeMindemyren {d in DAYS}:
+    sum{k in TRUCKS} x[d,k,'Horisont','Mindemyren'] = 1;
 
-
-subject to VisitPriorityOneFirst {v in VANS, d in DAYS, i in BAKERIES, j in BAKERIES: 
-    i != 'Mindemyren' and j != 'Mindemyren' and PRIORITY[d,i] = 1 and PRIORITY[d,j] != 1}:
-    u[v,d,i] <= u[v,d,j];
-    
-subject to MaintainPriorityOrder {v in VANS, d in DAYS, i in BAKERIES, j in BAKERIES: i != j and i != 'Mindemyren' and j != 'Mindemyren'}:
-    PRIORITY[d,i] * y[v,d,i] <= PRIORITY[d,j] * y[v,d,j] + 1000 * (1 - x[v,d,i,j]);
-    
-subject to HorisontVisitedLastOnce {d in DAYS}:
-    sum{v in VANS} x[v,d,'Horisont','Mindemyren'] = 1;
-
-subject to MaxDistance {d in DAYS, v in VANS}:
-    sum{i in BAKERIES, j in BAKERIES: i != j} DISTANCE[i,j] * x[v,d,i,j] <= max_distance[d];
-
-subject to StartWithPriorityOne {v in VANS, d in DAYS}:
-    sum{i in BAKERIES: i != 'Mindemyren' and PRIORITY[d,i] = 1} x[v,d,'Mindemyren',i] = 1;

@@ -1,6 +1,6 @@
 set BAKERIES := Korskirken Christie Marken Fløyen Mindemyren Festplassen KronstadX Horisont VestreTorggaten Fløttmannsplassen Lagunen;
 set DAYS := Saturday;
-set VANS := Van1 Van2;
+set TRUCKS := Truck1 Truck2;
 
 param DISTANCE: 
                 Horisont Festplassen Christie Fløttmannsplassen Marken Mindemyren Lagunen KronstadX VestreTorggaten Korskirken Fløyen :=
