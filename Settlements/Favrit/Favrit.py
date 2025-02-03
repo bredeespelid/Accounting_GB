@@ -33,7 +33,7 @@ def process_file(file_path):
         
         # Calculate the target column index (ten columns to the right of column A)
         target_column_index = 10  # This corresponds to 10 columns to the right of column A
-        fee_column_index = target_column_index - 1  # One column to the left
+        fee_column_index = target_column_index - 2  # One column to the left
         
         # Initialize the variable to store the last non-whitespace value
         last_value_before_whitespace = None
